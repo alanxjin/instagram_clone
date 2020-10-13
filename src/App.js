@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { PortraitPage } from "./components";
 import { createComment, getAllComments } from "./localStorage";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
   console.log(getAllComments());
   return (
     <div className="App">
+      <PortraitPage />
       <input
         value={text}
         onChange={(e) => {
