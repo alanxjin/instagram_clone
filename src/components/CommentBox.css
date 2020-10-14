@@ -1,0 +1,20 @@
+.CommentBox {
+  border-top: 1px solid #efefef;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background-color: white;
+}
+.CommentBox__Input {
+  flex-grow: 1;
+  height: 2.5rem;
+  border: none;
+}
+.CommentBox__Button {
+  text-align: center;
+  border: none;
+  background-color: white;
+  color: #0095f6;
+  cursor: pointer;
+}

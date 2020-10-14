@@ -1,0 +1,14 @@
+.SlidesIndicator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.SlidesIndicator__Icon {
+  font-size: 1rem;
+  color: #a8a8a8;
+}
+
+.SlidesIndicator__Icon-Selected {
+  color: #0095f6;
+}
