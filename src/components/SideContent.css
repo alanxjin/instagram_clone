@@ -1,0 +1,6 @@
+.SideContent {
+  width: 350px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}

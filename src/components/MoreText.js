@@ -3,7 +3,6 @@ import "./MoreText.css";
 
 function MoreText({ user, comment, limit = 10 }) {
   const [hidden, setHidden] = useState(comment.split(" ").length > limit);
-  console.log(comment.split(" "));
   return (
     <div className="MoreText">
       <span className="bold">{user} </span>

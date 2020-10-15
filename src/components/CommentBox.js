@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createComment, getAllComments } from "../localStorage";
+import { createComment } from "../localStorage";
 import "./CommentBox.css";
 
 function CommentBox() {

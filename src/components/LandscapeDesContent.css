@@ -1,0 +1,5 @@
+.LandscapeDesContent {
+  padding: 1rem;
+  overflow: auto;
+  flex-grow: 1;
+}

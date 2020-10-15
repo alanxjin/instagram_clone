@@ -1,0 +1,37 @@
+.LandscapeComment {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+}
+.LandscapeComment__Image {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.LandscapeComment__Text {
+  padding: 0 1rem;
+}
+
+.LandscapeComment__Content {
+  display: flex;
+  flex-direction: row;
+}
+
+.LandscapeComment__Status {
+  padding: 1rem 0;
+  color: #8f8f8f;
+}
+
+.LandscapeComment__LikeIcon {
+  cursor: pointer;
+}
+
+.LandscapeComment__Subcomments {
+  padding-left: 1rem;
+}
+
+.LandscapeComment__SubcommentButton {
+  color: #8f8f8f;
+  cursor: pointer;
+  user-select: none;
+}

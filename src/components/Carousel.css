@@ -1,7 +1,7 @@
 .Carousel {
   position: relative;
-  margin-top: 5rem;
   overflow: hidden;
+  width: 600px;
 }
 .Carousel__Images {
   display: flex;

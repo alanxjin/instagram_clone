@@ -1,7 +1,9 @@
-.PortraitPage {
+.LandscapePage {
   margin-top: 5rem;
-  width: 600px;
+  display: flex;
+  flex-direction: row;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
   overflow: hidden;
+  height: 685px;
 }
