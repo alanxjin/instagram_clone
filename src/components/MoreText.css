@@ -1,0 +1,16 @@
+/* .MoreText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+} */
+/* .MoreText__Main {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+} */
+
+.MoreText__More {
+  color: #8e8e8e;
+  cursor: pointer;
+}

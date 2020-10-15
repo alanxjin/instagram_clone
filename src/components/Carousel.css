@@ -12,6 +12,7 @@
 
 .Carousel__Images img {
   width: 600px;
+  user-select: none;
 }
 
 .Carousel__ArrowIcon {

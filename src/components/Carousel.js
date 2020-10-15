@@ -10,10 +10,8 @@ const IMAGE_WIDTH = 600;
 
 function Carousel({ currentInd, setCurrentInd }) {
   const styles = {
-    // left: `${-IMAGE_WIDTH * currentInd}rem`,
     left: -IMAGE_WIDTH * currentInd,
   };
-  console.log(currentInd);
   return (
     <div className="Carousel">
       <div className="Carousel__Images" style={styles}>

@@ -3,3 +3,15 @@
   padding: 0.5rem 1rem;
   overflow: auto;
 }
+.PortraitDescription__ViewMore {
+  color: #8a8a8a;
+  margin: 0.25rem 0;
+}
+.PortraitDescription__ViewMore > span {
+  cursor: pointer;
+}
+.PortraitDescription__Time {
+  color: #8a8a8a;
+  font-size: smaller;
+  margin: 0.25rem 0;
+}
