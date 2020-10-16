@@ -32,3 +32,11 @@
 .Carousel__ArrowIcon-Right {
   right: 1rem;
 }
+
+.Carousel__SlidesIndicator {
+  position: absolute;
+  bottom: 1rem;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Carousel from "./Carousel";
 import CommentBox from "./CommentBox";
 import Header from "./Header";
 import "./PortraitPage.css";
 import Description from "./Description";
 import PortraitDesContent from "./PortraitDesContent";
+import { connect } from "react-redux";
+import { updateSlideInd } from "../actions";
 
-function PortraitPage() {
-  const [currentInd, setCurrentInd] = useState(0);
+function PortraitPage({ portraitSlideInd, setCurrentInd }) {
   return (
     <div className="PortraitPage">
       <Header />
-      <Carousel setCurrentInd={setCurrentInd} currentInd={currentInd} />
+      <Carousel setCurrentInd={setCurrentInd} currentInd={portraitSlideInd} />
       <Description>
         <PortraitDesContent />
       </Description>
@@ -20,4 +21,19 @@ function PortraitPage() {
   );
 }
 
-export default PortraitPage;
+function mapStateToProps(state) {
+  const { portraitSlideInd } = state;
+  return {
+    portraitSlideInd,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentInd: (ind) => {
+      dispatch(updateSlideInd(ind));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PortraitPage);

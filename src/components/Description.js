@@ -6,11 +6,19 @@ import { connect } from "react-redux";
 import moment from "moment";
 
 const numberFormatter = new Intl.NumberFormat();
-function Description({ timestamp, likes, children, mode = "portrait" }) {
+function Description({
+  timestamp,
+  likes,
+  children,
+  portraitSlideInd,
+  mode = "portrait",
+}) {
   return (
     <div className="Description">
       <ToolBar>
-        {mode === "portrait" && <SlidesIndicator size={5} currentInd={4} />}
+        {mode === "portrait" && (
+          <SlidesIndicator size={5} currentInd={portraitSlideInd} />
+        )}
       </ToolBar>
       <div className="bold">{numberFormatter.format(likes)} likes</div>
       {children}
@@ -22,10 +30,11 @@ function Description({ timestamp, likes, children, mode = "portrait" }) {
 }
 
 function mapStateToProps(state) {
-  const { post } = state;
+  const { post, portraitSlideInd } = state;
   return {
     likes: post.likes,
     timestamp: post.timestamp,
+    portraitSlideInd,
   };
 }
 
