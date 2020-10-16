@@ -2,8 +2,10 @@ import React from "react";
 import "./PortraitDesContent.css";
 import MoreText from "./MoreText";
 import { connect } from "react-redux";
+import { updateModal } from "../actions";
 
 function PortraitDesContent({
+  openModal,
   comments,
   commentCnt,
   postUsername,
@@ -14,7 +16,7 @@ function PortraitDesContent({
       <MoreText user={postUsername} text={postDescription} limit={15} />
 
       {commentCnt > 0 && (
-        <div className="PortraitDesContent__ViewMore bold">
+        <div className="PortraitDesContent__ViewMore bold" onClick={openModal}>
           <span>View all {commentCnt} comments </span>
         </div>
       )}
@@ -46,4 +48,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(PortraitDesContent);
+function mapDispatchToProps(dispatch) {
+  return {
+    openModal: () => {
+      dispatch(updateModal(true));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PortraitDesContent);

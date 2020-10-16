@@ -1,7 +1,9 @@
 .Carousel {
   position: relative;
   overflow: hidden;
+  -webkit-overflow-scrolling: hidden;
   width: 600px;
+  height: 675px;
 }
 .Carousel__Images {
   display: flex;

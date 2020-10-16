@@ -17,11 +17,9 @@ function Carousel({ currentInd = 0, setCurrentInd, mode = "portrait" }) {
     <div className="Carousel">
       <div className="Carousel__Images" style={styles}>
         {images.map((name) => (
-          <img
-            key={name}
-            alt="Profile"
-            src={process.env.PUBLIC_URL + "/imgs/" + name}
-          />
+          <div key={name}>
+            <img alt="Profile" src={process.env.PUBLIC_URL + "/imgs/" + name} />
+          </div>
         ))}
       </div>
       <IoIosArrowDropleftCircle

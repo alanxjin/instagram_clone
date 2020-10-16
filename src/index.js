@@ -39,37 +39,3 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-// const comments = [
-//   {
-//     id: 1234,
-//     isDirect: true,
-//     username: "eve",
-//     profileImage: "/imgs/p1.jpg",
-//     text: "comment 1111 test test test test test test test test ",
-//     timestamp: 100000,
-//     liked: ["username2"],
-//     replied: [],
-//   },
-//   {
-//     id: 1235,
-//     isDirect: true,
-//     username: "alanxjin",
-//     profileImage: "/imgs/userProfile.jpg",
-//     text: "comment3333",
-//     timestamp: 100001,
-//     liked: ["alanxjin"],
-//     replied: [1236],
-//   },
-//   {
-//     id: 1236,
-//     isDirect: false,
-//     username: "bob",
-//     profileImage: "/imgs/p2.jpg",
-//     text:
-//       "@alanxjin com4444 cont4444 coment4444 cont4444 comment4444 comment4444 comment4444 comment4444 com4444 cont4444 coment4444 cont4444",
-//     timestamp: 100002,
-//     liked: ["alanxjin", "username2"],
-//     replied: [],
-//   },
-// ];
