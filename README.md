@@ -1,6 +1,6 @@
 ## Instagram clone
 
-This is a instagram clone built with React.
+This is an Instagram clone built with React.
 
 ## How to run the app
 
