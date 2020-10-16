@@ -32,12 +32,14 @@ function PortraitDesContent({
 function mapStateToProps(state) {
   const { comments, post } = state;
   const commentCnt = comments.length;
-  comments.sort(
+
+  const newComments = [...comments];
+  newComments.sort(
     (comment1, comment2) => comment2.timestamp - comment1.timestamp
   );
 
   return {
-    comments: comments.slice(0, 2),
+    comments: newComments.slice(0, 2),
     commentCnt,
     postUsername: post.username,
     postDescription: post.description,

@@ -25,10 +25,3 @@ const post = {
   profileImage: process.env.PUBLIC_URL + "/imgs/postProfile.jpg",
 }
 ```
-
-## Sorting on comments
-
-I didn't figure out how instagram sorting the comments. So I just went with following rules.
-
-- On portraits mode: taking the two with most recently time (largest timestamp)
-- on landscape mode: sort on likes first (descending), then break tie with time (earlier come first, i.e. smaller timestamp)

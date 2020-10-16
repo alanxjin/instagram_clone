@@ -17,6 +17,7 @@ function LandscapeDesContent({ post, directComments, subComments }) {
         <LandscapeComment
           key={comment.id}
           {...comment}
+          replyId={comment.id}
           subComments={subComments[ind]}
         />
       ))}
@@ -26,11 +27,11 @@ function LandscapeDesContent({ post, directComments, subComments }) {
 
 function mapStateToProps(state) {
   const { comments, post } = state;
-  comments.sort(
-    (comment1, comment2) =>
-      comment2.liked.length - comment1.liked.length ||
-      comment2.timestamp - comment1.timestamp
-  );
+  // comments.sort(
+  //   (comment1, comment2) =>
+  //     comment2.liked.length - comment1.liked.length ||
+  //     comment2.timestamp - comment1.timestamp
+  // );
 
   const directComments = comments.filter((comment) => comment.isDirect);
   const subComments = directComments.map((comment) =>

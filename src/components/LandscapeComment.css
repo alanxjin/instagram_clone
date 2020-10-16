@@ -26,6 +26,10 @@
   color: #8f8f8f;
 }
 
+.LandscapeComment__StatusReply {
+  cursor: pointer;
+}
+
 .LandscapeComment__LikeIcon {
   cursor: pointer;
 }

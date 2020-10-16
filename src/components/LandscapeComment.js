@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import "./LandscapeComment.css";
-import { IoIosHeartEmpty } from "react-icons/all";
+import { IoIosHeartEmpty, IoIosHeart } from "react-icons/all";
 import moment from "moment";
+import { connect } from "react-redux";
+import { likeComment as likeCommentDB } from "../localStorage";
+import { likeComment, replyComment } from "../actions";
 
 function LandscapeComment({
+  likeCommentRD,
+  replyCommentRD,
+  id,
+  replyId,
   profileImage,
   username,
+  loginUser,
   text,
   timestamp,
   liked = [],
@@ -13,9 +21,19 @@ function LandscapeComment({
   subComments = [],
 }) {
   const [isHidden, setIsHidden] = useState(true);
+
+  const timeStr = moment(timestamp).fromNow();
+  const timesplits = timeStr.split(" ");
   const time =
-    moment(timestamp).fromNow().split(" ")[0] +
-    moment(timestamp).fromNow().split(" ")[1].substring(0, 1);
+    timeStr === "a few seconds ago"
+      ? "0m"
+      : (["a", "an"].includes(timesplits[0]) ? "1" : timesplits[0]) +
+        timesplits[1].substring(0, 1);
+
+  const likeOnClick = () => {
+    likeCommentDB(id, loginUser);
+    likeCommentRD(id, loginUser);
+  };
   return (
     <div className="LandscapeComment">
       <div>
@@ -36,15 +54,32 @@ function LandscapeComment({
               <span className="marginRight"> {time} </span>
               {!isDes && (
                 <span>
-                  <span className="bold marginRight">{liked.length} likes</span>
-                  <span className="bold marginRight"> Reply </span>
+                  {liked.length > 0 && (
+                    <span className="bold marginRight">
+                      {liked.length} {liked.length > 1 ? "likes" : "like"}
+                    </span>
+                  )}
+                  <span
+                    className="bold marginRight LandscapeComment__StatusReply"
+                    onClick={() => {
+                      replyCommentRD(replyId, username);
+                    }}
+                  >
+                    Reply
+                  </span>
                 </span>
               )}
             </div>
           </div>
-          <div>
-            <IoIosHeartEmpty className="LandscapeComment__LikeIcon" />
-          </div>
+          {!isDes && (
+            <div onClick={likeOnClick}>
+              {liked.includes(username) ? (
+                <IoIosHeart className="LandscapeComment__LikeIcon" />
+              ) : (
+                <IoIosHeartEmpty className="LandscapeComment__LikeIcon" />
+              )}
+            </div>
+          )}
         </div>
         {subComments.length > 0 && (
           <div className="LandscapeComment__Subcomments">
@@ -62,7 +97,14 @@ function LandscapeComment({
             {!isHidden && (
               <div>
                 {subComments.map((comment) => (
-                  <LandscapeComment key={comment.id} {...comment} />
+                  <LandscapeComment
+                    key={comment.id}
+                    {...comment}
+                    replyId={replyId}
+                    likeCommentRD={likeCommentRD}
+                    replyCommentRD={replyCommentRD}
+                    loginUser={loginUser}
+                  />
                 ))}
               </div>
             )}
@@ -73,4 +115,22 @@ function LandscapeComment({
   );
 }
 
-export default LandscapeComment;
+function mapStateToProps(state) {
+  const { loginUser } = state;
+  return {
+    loginUser,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    likeCommentRD: (commentId, username) => {
+      dispatch(likeComment(commentId, username));
+    },
+    replyCommentRD: (commentId, toUsername) => {
+      dispatch(replyComment(commentId, toUsername));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandscapeComment);

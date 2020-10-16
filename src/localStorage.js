@@ -5,19 +5,43 @@ function uuidv4() {
     return v.toString(16);
   });
 }
-export const createComment = (commentInfo) => {
+export const createComment = (comment, toCommentId = 0) => {
   const oldSerializedComments = localStorage.getItem("comments") ?? "{}";
   const comments = JSON.parse(oldSerializedComments);
   let commentId = uuidv4();
   while (commentId in comments) {
     commentId = uuidv4();
   }
-  commentInfo["id"] = commentId;
-  commentInfo["timestamp"] = +new Date();
+  comment["id"] = commentId;
+  comment["timestamp"] = +new Date();
+  comment["liked"] = [];
+  comment["replied"] = [];
 
-  comments[commentId] = commentInfo;
+  comments[commentId] = comment;
+  if (toCommentId !== 0) {
+    const toComment = comments[toCommentId];
+    toComment["replied"].push(comment.id);
+  }
   const serializedComments = JSON.stringify(comments);
   localStorage.setItem("comments", serializedComments);
+  return comment;
+};
+
+export const likeComment = (commentId, username) => {
+  let oldSerializedComments = localStorage.getItem("comments") ?? "{}";
+  const comments = JSON.parse(oldSerializedComments);
+  const comment = comments[commentId];
+  if (!comment.liked.includes(username)) {
+    comment.liked.push(username);
+  } else {
+    const index = comment.liked.indexOf(username);
+    if (index > -1) {
+      comment.liked.splice(index, 1);
+    }
+  }
+  const serializedComments = JSON.stringify(comments);
+  localStorage.setItem("comments", serializedComments);
+  return comment;
 };
 
 export const updateComment = (commentId, commentInfo) => {
@@ -28,70 +52,11 @@ export const updateComment = (commentId, commentInfo) => {
   localStorage.setItem("comments", serializedComments);
 };
 
-// export const getComment = (commentId) => {
-//   const serializedComments = localStorage.getItem("comments");
-//   if (serializedComments === null) {
-//     return undefined;
-//   }
-//   return JSON.parse(serializedComments).filter(
-//     (comment) => comment.id === commentId
-//   );
-// };
-
-// sort: 1 => ascending, 0 => not sorting, -1: descending
-export const getComments = (
-  postId,
-  isDirectReply = false,
-  sortByTimestamp = 1,
-  sortByLike = -1,
-  limit = -1
-) => {
-  // const serializedComments = localStorage.getItem("comments");
-  // if (serializedComments === null) {
-  //   return [];
-  // }
-  //const comments = JSON.parse(serializedComments).filter(
-  //  (comment) => comment.postId === postId
-  //);
-
-  let comments = [
-    { likes: [12, 3], timestamp: 1234 },
-    { likes: [12, 3, 45, 4], timestamp: 1234 },
-    { likes: [12, 3, 45, 4], timestamp: 1000 },
-  ];
-
-  comments.filter(
-    (comment) =>
-      comment.postId === postId && comment.isDirectReply === isDirectReply
-  );
-
-  comments.sort((comment1, comment2) => {
-    const likeCompare =
-      sortByLike * (comment1.likes.length - comment2.likes.length) ||
-      sortByTimestamp * (comment1.timestamp - comment2.timestamp);
-    return likeCompare;
-  });
-
-  if (limit >= 0) {
-    return comments.splice(0, limit);
+export const getComments = () => {
+  const serializedComments = localStorage.getItem("comments");
+  if (serializedComments === null) {
+    return [];
   }
+  const comments = Object.values(JSON.parse(serializedComments));
   return comments;
-};
-
-export const getCommentCount = (postId) => {
-  // const serializedComments = localStorage.getItem("comments");
-  // if (serializedComments === null) {
-  //   return [];
-  // }
-  //const comments = JSON.parse(serializedComments).filter(
-  //  (comment) => comment.postId === postId
-  //);
-
-  let comments = [
-    { likes: [12, 3], timestamp: 1234 },
-    { likes: [12, 3, 45, 4], timestamp: 1234 },
-    { likes: [12, 3, 45, 4], timestamp: 1000 },
-  ];
-
-  return comments.length;
 };

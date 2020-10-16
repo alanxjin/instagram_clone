@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./reducers";
-// import { getComments } from "./localStorage";
+import { getComments } from "./localStorage";
 
 const post = {
   id: 1000,
@@ -18,43 +18,8 @@ const post = {
   timestamp: 1602787081979,
   profileImage: "/imgs/postProfile.jpg",
 };
-const comments = [
-  {
-    id: 1234,
-    postId: 1000,
-    isDirect: true,
-    username: "eve",
-    profileImage: "/imgs/p1.jpg",
-    text: "comment 1111 test test test test test test test test ",
-    timestamp: 100000,
-    liked: ["username2"],
-    replied: [],
-  },
-  {
-    id: 1235,
-    postId: 1000,
-    isDirect: true,
-    username: "alanxjin",
-    profileImage: "/imgs/userProfile.jpg",
-    text: "comment3333",
-    timestamp: 100001,
-    liked: ["alanxjin"],
-    replied: [1236],
-  },
-  {
-    id: 1236,
-    postId: 1000,
-    isDirect: false,
-    username: "bob",
-    profileImage: "/imgs/p2.jpg",
-    text:
-      "@alanxjin com4444 cont4444 coment4444 cont4444 comment4444 comment4444 comment4444 comment4444 com4444 cont4444 coment4444 cont4444",
-    timestamp: 100002,
-    liked: ["alanxjin", "username2"],
-    replied: [],
-  },
-];
 
+const comments = getComments();
 const store = createStore(
   rootReducer,
   { post, loginUser: "alanxjin", comments },
@@ -74,3 +39,37 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// const comments = [
+//   {
+//     id: 1234,
+//     isDirect: true,
+//     username: "eve",
+//     profileImage: "/imgs/p1.jpg",
+//     text: "comment 1111 test test test test test test test test ",
+//     timestamp: 100000,
+//     liked: ["username2"],
+//     replied: [],
+//   },
+//   {
+//     id: 1235,
+//     isDirect: true,
+//     username: "alanxjin",
+//     profileImage: "/imgs/userProfile.jpg",
+//     text: "comment3333",
+//     timestamp: 100001,
+//     liked: ["alanxjin"],
+//     replied: [1236],
+//   },
+//   {
+//     id: 1236,
+//     isDirect: false,
+//     username: "bob",
+//     profileImage: "/imgs/p2.jpg",
+//     text:
+//       "@alanxjin com4444 cont4444 coment4444 cont4444 comment4444 comment4444 comment4444 comment4444 com4444 cont4444 coment4444 cont4444",
+//     timestamp: 100002,
+//     liked: ["alanxjin", "username2"],
+//     replied: [],
+//   },
+// ];

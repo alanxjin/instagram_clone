@@ -1,24 +1,24 @@
-export const increment = (num) => {
+export const createComment = (comment, toCommentId) => {
   return {
-    type: "INCREMENT",
-    payload: num,
+    type: "CREATE_COMMENT",
+    comment,
+    toCommentId,
   };
 };
 
-export const like = (commentId) => {
+export const likeComment = (commentId, username) => {
   return {
-    type: "LIKE",
+    type: "LIKE_COMMENT",
     commentId,
+    username,
   };
 };
 
-export const reply = (commentId = "", author, text, timestamp) => {
+export const replyComment = (commentId, toUsername) => {
   return {
-    type: "REPLY",
+    type: "REPLY_COMMENT",
     commentId,
-    author,
-    text,
-    timestamp,
+    toUsername,
   };
 };
 
