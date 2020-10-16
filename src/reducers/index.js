@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import commentsReducer from "./comments";
-import LoginReducer from "./login";
-import portraitSlideIndReducer from "./portraitSlideInd";
-import postReducer from "./post";
-import replyReducer from "./reply";
+import commentsReducer from "./commentReducer";
+import LoginReducer from "./loginReducer";
+import portraitSlideIndReducer from "./portraitSlideIndReducer";
+import postReducer from "./postReducer";
+import replyReducer from "./replyReducer";
 
 const rootReducer = combineReducers({
   comments: commentsReducer,
