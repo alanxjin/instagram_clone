@@ -1,24 +1,30 @@
 import React from "react";
 import "./Header.css";
 import { BsThreeDots } from "react-icons/all";
+import { connect } from "react-redux";
 
-function Header({ mode = "portrait" }) {
+function Header({ username, status, profileImage, mode = "portrait" }) {
   return (
     <div className="Header">
-      <img
-        alt="Profile"
-        className="Header__Image"
-        src={process.env.PUBLIC_URL + "/imgs/postProfile.jpg"}
-      />
+      <img alt="Profile" className="Header__Image" src={profileImage} />
       <div className="Header__Text">
         <div className="bold">
-          alanxjin {mode === "landscape" && <span>• Following</span>}
+          {username} {mode === "landscape" && <span>• Following</span>}
         </div>
-        <div>Four Seasons Hotel Hampshire, England</div>
+        <div>{status}</div>
       </div>
       <BsThreeDots className="Header__Icon" />
     </div>
   );
 }
 
-export default Header;
+function mapStateToProps(state) {
+  const { post } = state;
+  return {
+    username: post.username,
+    status: post.status,
+    profileImage: post.profileImage,
+  };
+}
+
+export default connect(mapStateToProps)(Header);

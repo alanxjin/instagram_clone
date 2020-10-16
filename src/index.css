@@ -18,6 +18,10 @@ code {
   font-weight: bold;
 }
 
+.marginRight {
+  margin-right: 0.25rem;
+}
+
 *:focus {
   outline: none;
 }

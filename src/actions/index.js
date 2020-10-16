@@ -21,3 +21,17 @@ export const reply = (commentId = "", author, text, timestamp) => {
     timestamp,
   };
 };
+
+export const updatePost = (postInfo) => {
+  return {
+    type: "UPDATE_POST",
+    postInfo,
+  };
+};
+
+export const updateLoginUser = (username) => {
+  return {
+    type: "UPDATE_LOGIN_USER",
+    username,
+  };
+};

@@ -8,8 +8,12 @@
   border-radius: 50%;
 }
 
+.LandscapeComment__Main {
+  flex-grow: 1;
+}
 .LandscapeComment__Text {
   padding: 0 1rem;
+  flex-grow: 1;
 }
 
 .LandscapeComment__Content {

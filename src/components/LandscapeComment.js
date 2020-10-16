@@ -1,39 +1,43 @@
 import React, { useState } from "react";
 import "./LandscapeComment.css";
 import { IoIosHeartEmpty } from "react-icons/all";
+import moment from "moment";
 
-function LandscapeComment({ isDes = false, subComments = [] }) {
+function LandscapeComment({
+  profileImage,
+  username,
+  text,
+  timestamp,
+  liked = [],
+  isDes = false,
+  subComments = [],
+}) {
   const [isHidden, setIsHidden] = useState(true);
+  const time =
+    moment(timestamp).fromNow().split(" ")[0] +
+    moment(timestamp).fromNow().split(" ")[1].substring(0, 1);
   return (
     <div className="LandscapeComment">
       <div>
         <img
           alt="Profile"
           className="LandscapeComment__Image"
-          src={
-            process.env.PUBLIC_URL +
-            "/imgs/" +
-            (isDes ? "postProfile.jpg" : "userProfile.jpg")
-          }
+          src={process.env.PUBLIC_URL + profileImage}
         />
       </div>
       <div className="LandscapeComment__Main">
         <div className="LandscapeComment__Content">
           <div className="LandscapeComment__Text">
             <div>
-              <span className="bold">{isDes ? "alanxjin " : "alice "}</span>
-              Artist Preta Wolzak’s (@pretawolzak) textured mixed-media pieces
-              focus on hard issues, including gender equality, representation
-              and race. Her collections “Ma Petit Inuite” and “Arctic Charade”
-              (pictured) confronts the impact of humans’ behavior on our planet
-              and the effects of climate change.
+              <span className="bold">{username} </span>
+              {text}
             </div>
             <div className="LandscapeComment__Status">
-              <span> 2w </span>
+              <span className="marginRight"> {time} </span>
               {!isDes && (
                 <span>
-                  <span className="bold"> 1 likes </span>
-                  <span className="bold"> Reply </span>
+                  <span className="bold marginRight">{liked.length} likes</span>
+                  <span className="bold marginRight"> Reply </span>
                 </span>
               )}
             </div>
@@ -50,13 +54,15 @@ function LandscapeComment({ isDes = false, subComments = [] }) {
             >
               <span> —— </span>
               <span className="bold">
-                {isHidden ? "View replies (1)" : "Hide replies"}
+                {isHidden
+                  ? `View replies (${subComments.length})`
+                  : "Hide replies"}
               </span>
             </div>
             {!isHidden && (
               <div>
-                {subComments.map((commentInfo) => (
-                  <LandscapeComment key={commentInfo["commentId"]} />
+                {subComments.map((comment) => (
+                  <LandscapeComment key={comment.id} {...comment} />
                 ))}
               </div>
             )}
